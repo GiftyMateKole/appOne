@@ -8,6 +8,32 @@
 
 		<link rel="stylesheet"  href="css/jquery.mobile.structure.css" />
 		<link rel="stylesheet" href="css/jquery.mobile.theme.css" />
+		<script type="text/javascript" src="jquery-1.12.1.js"></script>
+		<script type="text/javascript">
+		(function () {
+		document.addEventListener('deviceready', onDeviceReady.bind(this)), false};
+		var pictureSource;
+		var destinationType;
+		function onDeviceReady() {
+		pictureSource = navigator.camera.PictureSourceType;
+		destinationType = navigator.camera.DestinationType;
+		
+		document.getElementsById("capturePhoto").onclick = function(){
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+		quality : 50,
+		destinaationType : destinationType.DATA_URL});
+		};
+		};
+		
+		function onPhotoDataSuccess(imageURL){
+		var largeImage = document.getElementsById('smallImage');
+		
+		smallImage.style.display = 'block';
+		smallImage .src = "data:image/jpeg;base64," + imageData;
+		}
+		)
+		
+		</script>
 
 		<script>
 			var userAgent = navigator.userAgent + '';
@@ -69,6 +95,9 @@
 				</a>
 				<br/>
 				<a href="#results" data-transition="slide">
+				<button type="button">Results</button>
+				</a>
+				<a href="#camera" id="capturePhoto" class="button result color white">
 				<button type="button">Results</button>
 				</a>
 				<br />
